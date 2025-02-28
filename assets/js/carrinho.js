@@ -69,7 +69,9 @@ function renderizarCarrinho(produtos) {
    carrinhoContainer.innerHTML = `
       <div class="carrinho-conteudo">
          <div class="carrinho-items">
-            ${produtos.map((produto) => criarItemCarrinho(produto)).join('')}
+            ${produtos
+               .map((produto) => renderizarItemCarrinho(produto))
+               .join('')}
          </div>
          
          <div class="resumo-compra">
@@ -110,45 +112,54 @@ function renderizarCarrinho(produtos) {
    adicionarEventosBotoes(produtos)
 }
 
-// Função para criar um item do carrinho
-function criarItemCarrinho(produto) {
+// Função para renderizar um item do carrinho
+function renderizarItemCarrinho(produto) {
+   // Calcular subtotal
    const subtotal = produto.preco * produto.quantidade
 
-   // Verificar se a imagem é uma URL absoluta
-   const imagemSrc = produto.imagem.startsWith('http')
-      ? produto.imagem
-      : `../${produto.imagem}`
+   // Solução robusta para as imagens
+   let imagemSrc =
+      'https://via.placeholder.com/200x200/f8f9fa/dddddd?text=PetAmigo'
+
+   if (produto.imagem && produto.imagem.startsWith('http')) {
+      // Usar URLs diretas do Unsplash sem parâmetros complexos
+      if (produto.imagem.includes('unsplash.com')) {
+         // Remove todos os parâmetros existentes e adiciona apenas tamanho e qualidade
+         imagemSrc = produto.imagem.split('?')[0] + '?w=200&q=80'
+      } else {
+         // Para outras fontes de imagem, usa a URL diretamente
+         imagemSrc = produto.imagem
+      }
+   }
 
    return `
       <div class="carrinho-item">
          <img src="${imagemSrc}" alt="${
       produto.nome
-   }" class="carrinho-item-imagem">
+   }" class="carrinho-item-imagem" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x200/f8f9fa/dddddd?text=PetAmigo';">
          
          <div class="carrinho-item-info">
             <h3>${produto.nome}</h3>
-            <div class="preco">R$ ${produto.preco.toFixed(2)}</div>
-            
-            <div class="carrinho-item-actions">
-               <div class="carrinho-item-quantidade">
-                  <button class="diminuir-quantidade" data-id="${
-                     produto.id
-                  }">-</button>
-                  <span>${produto.quantidade}</span>
-                  <button class="aumentar-quantidade" data-id="${
-                     produto.id
-                  }">+</button>
-               </div>
-               
-               <button class="remover-item" data-id="${produto.id}">
-                  <i class="fas fa-trash"></i>
-               </button>
-            </div>
+            <p class="carrinho-item-preco">R$ ${produto.preco.toFixed(2)}</p>
+         </div>
+         
+         <div class="carrinho-item-quantidade">
+            <button class="diminuir-quantidade" data-id="${produto.id}">
+               <i class="fas fa-minus"></i>
+            </button>
+            <span>${produto.quantidade}</span>
+            <button class="aumentar-quantidade" data-id="${produto.id}">
+               <i class="fas fa-plus"></i>
+            </button>
          </div>
          
          <div class="carrinho-item-subtotal">
-            <span>R$ ${subtotal.toFixed(2)}</span>
+            <p>R$ ${subtotal.toFixed(2)}</p>
          </div>
+         
+         <button class="remover-item" data-id="${produto.id}">
+            <i class="fas fa-trash-alt"></i>
+         </button>
       </div>
    `
 }

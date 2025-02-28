@@ -3,17 +3,55 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>PetAmigo - Tudo para o seu melhor amigo</title>
+      <title>PetAmigo - A Melhor Loja Online para Produtos de Pets</title>
+
+      <!-- Meta tags SEO -->
+      <meta
+         name="description"
+         content="PetAmigo oferece produtos de alta qualidade para cães, gatos e outros animais de estimação. Ração, acessórios, brinquedos e muito mais para o seu pet."
+      />
+      <meta
+         name="keywords"
+         content="pet shop, petshop, produtos para pets, ração para cães, brinquedos para gatos, acessórios para pets"
+      />
+      <meta name="author" content="PetAmigo" />
+
+      <!-- Open Graph Tags para compartilhamento em redes sociais -->
+      <meta
+         property="og:title"
+         content="PetAmigo - A Melhor Loja Online para Produtos de Pets"
+      />
+      <meta
+         property="og:description"
+         content="Produtos de alta qualidade para seu melhor amigo. Rações, acessórios, brinquedos e muito mais."
+      />
+      <meta
+         property="og:image"
+         content="https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?q=80&w=1200"
+      />
+      <meta property="og:url" content="https://petamigo.com.br" />
+      <meta property="og:type" content="website" />
+
+      <!-- Favicon -->
+      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+
+      <!-- Preconnect para fontes e CDNs -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+      <!-- Fonts -->
       <link
          rel="stylesheet"
          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
       />
+      <!-- Ícones -->
       <link
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       />
+      <!-- CSS -->
       <link rel="stylesheet" href="assets/css/style.css" />
-      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
    </head>
    <body>
       <header>
@@ -54,37 +92,55 @@
          </section>
 
          <section id="produtos" class="produtos-destaque">
+            <!-- Elementos decorativos de patas de animais -->
+            <img
+               src="https://svgsilh.com/svg/1314467.svg"
+               alt=""
+               class="decorative-paw paw-1"
+               aria-hidden="true"
+            />
+            <img
+               src="https://svgsilh.com/svg/1314467.svg"
+               alt=""
+               class="decorative-paw paw-2"
+               aria-hidden="true"
+            />
+            <img
+               src="https://svgsilh.com/svg/1314467.svg"
+               alt=""
+               class="decorative-paw paw-3"
+               aria-hidden="true"
+            />
+
             <div class="container">
                <div class="section-title">
-                  <h2>Nossos Produtos</h2>
+                  <h2>Produtos para seu Pet</h2>
+                  <p>
+                     Selecionados especialmente para garantir o bem-estar, saúde
+                     e felicidade do seu melhor amigo
+                  </p>
                </div>
 
-               <div class="categorias">
+               <div class="filter-bar">
                   <button class="categoria-btn active" data-categoria="todos">
                      Todos
                   </button>
                   <button class="categoria-btn" data-categoria="alimentacao">
                      Alimentação
                   </button>
-                  <button class="categoria-btn" data-categoria="higiene">
-                     Higiene
+                  <button class="categoria-btn" data-categoria="brinquedos">
+                     Brinquedos
                   </button>
                   <button class="categoria-btn" data-categoria="acessorios">
                      Acessórios
                   </button>
-                  <button class="categoria-btn" data-categoria="brinquedos">
-                     Brinquedos
-                  </button>
-                  <button class="categoria-btn" data-categoria="saude">
-                     Saúde
+                  <button class="categoria-btn" data-categoria="higiene">
+                     Higiene
                   </button>
                </div>
 
                <div id="lista-produtos" class="grid-produtos">
-                  <div class="loading">
-                     <i class="fas fa-spinner fa-spin"></i> Carregando
-                     produtos...
-                  </div>
+                  <!-- Os produtos serão carregados via JavaScript -->
                </div>
             </div>
          </section>
@@ -172,5 +228,6 @@
 
       <script src="assets/js/api.js"></script>
       <script src="assets/js/main.js"></script>
+      <script src="assets/js/imagens.js"></script>
    </body>
 </html>

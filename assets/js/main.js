@@ -96,24 +96,48 @@ function criarElementoProduto(produto) {
    const div = document.createElement('div')
    div.className = 'produto-card'
 
-   // Verificar se a imagem é uma URL ou caminho relativo
-   const imagemSrc = produto.imagem.startsWith('http')
-      ? produto.imagem
-      : `assets/img/produto-placeholder.jpg`
+   // Solução robusta para as imagens
+   let imagemSrc =
+      'https://via.placeholder.com/600x400/f8f9fa/dddddd?text=PetAmigo'
+
+   if (produto.imagem && produto.imagem.startsWith('http')) {
+      // Usar URLs diretas do Unsplash sem parâmetros complexos
+      if (produto.imagem.includes('unsplash.com')) {
+         // Remove todos os parâmetros existentes e adiciona apenas tamanho e qualidade
+         imagemSrc = produto.imagem.split('?')[0] + '?w=600&q=80'
+      } else {
+         // Para outras fontes de imagem, usa a URL diretamente
+         imagemSrc = produto.imagem
+      }
+   }
+
+   // Badge de destaque ou tag só é adicionada se existir
+   const badgeHTML = produto.tag
+      ? `<span class="produto-badge">${produto.tag}</span>`
+      : ''
 
    div.innerHTML = `
-      <img src="${imagemSrc}" alt="${produto.nome}">
+      ${badgeHTML}
+      <div class="produto-img">
+         <img src="${imagemSrc}" alt="${
+      produto.nome
+   }" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/f8f9fa/dddddd?text=PetAmigo';">
+      </div>
       <div class="produto-info">
+         <div class="produto-categoria">
+            <i class="fas ${getCategoriaIcon(produto.categoria)}"></i>
+            ${getCategoriaLabel(produto.categoria)}
+         </div>
          <h3>${produto.nome}</h3>
          <p>${produto.descricao.substring(0, 100)}${
       produto.descricao.length > 100 ? '...' : ''
    }</p>
          <div class="produto-metadata">
             <span class="produto-preco">R$ ${produto.preco.toFixed(2)}</span>
-            <span class="avaliacao">
-               <span class="stars">${gerarEstrelas(produto.avaliacao)}</span>
-               <span>${produto.avaliacao.toFixed(1)}</span>
-            </span>
+            <div class="produto-avaliacao">
+               ${gerarEstrelas(produto.avaliacao)}
+               <span>(${produto.avaliacao.toFixed(1)})</span>
+            </div>
          </div>
          <div class="produto-actions">
             <button class="btn" onclick="adicionarAoCarrinho(${produto.id})">
@@ -131,28 +155,64 @@ function criarElementoProduto(produto) {
    return div
 }
 
-// Função para gerar estrelas com base na avaliação
+// Função para gerar ícone baseado na categoria
+function getCategoriaIcon(categoria) {
+   switch (categoria) {
+      case 'alimentacao':
+         return 'fa-bowl-food'
+      case 'brinquedos':
+         return 'fa-baseball'
+      case 'acessorios':
+         return 'fa-tag'
+      case 'higiene':
+         return 'fa-shower'
+      default:
+         return 'fa-paw'
+   }
+}
+
+// Função para gerar label da categoria
+function getCategoriaLabel(categoria) {
+   switch (categoria) {
+      case 'alimentacao':
+         return 'Alimentação'
+      case 'brinquedos':
+         return 'Brinquedos'
+      case 'acessorios':
+         return 'Acessórios'
+      case 'higiene':
+         return 'Higiene'
+      default:
+         return categoria
+   }
+}
+
+// Função para gerar estrelas HTML
 function gerarEstrelas(avaliacao) {
    const estrelaCheia = '<i class="fas fa-star"></i>'
    const estrelaMeia = '<i class="fas fa-star-half-alt"></i>'
    const estrelaVazia = '<i class="far fa-star"></i>'
 
    let estrelas = ''
-   const avaliacaoInteira = Math.floor(avaliacao)
-   const temMeia = avaliacao % 1 >= 0.5
+
+   // Número de estrelas inteiras
+   const estrelasInteiras = Math.floor(avaliacao)
+
+   // Se tem meia estrela
+   const temMeiaEstrela = avaliacao - estrelasInteiras >= 0.5
 
    // Adicionar estrelas cheias
-   for (let i = 0; i < avaliacaoInteira; i++) {
+   for (let i = 0; i < estrelasInteiras; i++) {
       estrelas += estrelaCheia
    }
 
-   // Adicionar meia estrela se necessário
-   if (temMeia) {
+   // Adicionar meia estrela, se necessário
+   if (temMeiaEstrela) {
       estrelas += estrelaMeia
    }
 
    // Adicionar estrelas vazias
-   const estrelasVazias = 5 - avaliacaoInteira - (temMeia ? 1 : 0)
+   const estrelasVazias = 5 - estrelasInteiras - (temMeiaEstrela ? 1 : 0)
    for (let i = 0; i < estrelasVazias; i++) {
       estrelas += estrelaVazia
    }

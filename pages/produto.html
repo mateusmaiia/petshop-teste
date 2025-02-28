@@ -4,6 +4,19 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Detalhes do Produto - PetAmigo</title>
+
+      <!-- Meta tags SEO (preenchidas dinamicamente via JavaScript) -->
+      <meta
+         name="description"
+         content="Encontre os melhores produtos para o seu pet na PetAmigo. Qualidade e variedade para o bem-estar do seu melhor amigo."
+      />
+
+      <!-- Preconnect para fontes e CDNs -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+      <!-- CSS -->
       <link
          rel="stylesheet"
          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
@@ -15,12 +28,42 @@
       <link rel="stylesheet" href="../assets/css/style.css" />
       <link rel="stylesheet" href="../assets/css/produto.css" />
       <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon" />
+
+      <!-- Structured Data para Rich Snippets (preenchido dinamicamente) -->
+      <script type="application/ld+json" id="produto-schema">
+         {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "Produto PetAmigo",
+            "image": "",
+            "description": "Produto de alta qualidade para seu pet",
+            "brand": {
+               "@type": "Brand",
+               "name": "PetAmigo"
+            },
+            "offers": {
+               "@type": "Offer",
+               "url": "",
+               "priceCurrency": "BRL",
+               "price": "0.00",
+               "availability": "https://schema.org/InStock"
+            },
+            "aggregateRating": {
+               "@type": "AggregateRating",
+               "ratingValue": "5",
+               "reviewCount": "1"
+            }
+         }
+      </script>
    </head>
    <body>
       <header>
          <div class="container">
             <div class="logo">
-               <img src="../assets/img/logo-petshop.png" alt="PetAmigo Logo" />
+               <img
+                  src="https://images.unsplash.com/photo-1602612142771-04b0adfca46d?q=80&w=100&h=100&crop=faces&fit=crop"
+                  alt="PetAmigo Logo"
+               />
                <h1>PetAmigo</h1>
             </div>
             <nav>
@@ -129,5 +172,6 @@
       <script src="../assets/js/api.js"></script>
       <script src="../assets/js/main.js"></script>
       <script src="../assets/js/produto.js"></script>
+      <script src="../assets/js/imagens.js"></script>
    </body>
 </html>

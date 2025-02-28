@@ -50,12 +50,25 @@ async function carregarProduto() {
 
 // Função para renderizar detalhes do produto
 function renderizarProduto(produto) {
+   // Primeiro atualizar os metadados SEO
+   atualizarMetadadosSEO(produto)
+
    const produtoDetalhe = document.getElementById('produto-detalhe')
 
-   // Verificar se a imagem é uma URL absoluta
-   const imagemSrc = produto.imagem.startsWith('http')
-      ? produto.imagem
-      : `../${produto.imagem}`
+   // Solução robusta para as imagens
+   let imagemSrc =
+      'https://via.placeholder.com/800x600/f8f9fa/dddddd?text=PetAmigo'
+
+   if (produto.imagem && produto.imagem.startsWith('http')) {
+      // Usar URLs diretas do Unsplash sem parâmetros complexos
+      if (produto.imagem.includes('unsplash.com')) {
+         // Remove todos os parâmetros existentes e adiciona apenas tamanho e qualidade
+         imagemSrc = produto.imagem.split('?')[0] + '?w=800&q=80'
+      } else {
+         // Para outras fontes de imagem, usa a URL diretamente
+         imagemSrc = produto.imagem
+      }
+   }
 
    const disponibilidade =
       produto.estoque > 0
@@ -67,7 +80,7 @@ function renderizarProduto(produto) {
          <div class="produto-imagem-container">
             <img src="${imagemSrc}" alt="${
       produto.nome
-   }" class="produto-imagem">
+   }" class="produto-imagem" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600/f8f9fa/dddddd?text=PetAmigo';">
             ${
                produto.estoque < 5 && produto.estoque > 0
                   ? `<div class="produto-tag">Últimas unidades</div>`
@@ -207,6 +220,60 @@ async function carregarProdutosRelacionados(categoria, produtoAtualId) {
    } catch (error) {
       console.error('Erro ao carregar produtos relacionados:', error)
       container.innerHTML = '<p>Erro ao carregar produtos relacionados.</p>'
+   }
+}
+
+// Função para atualizar os metadados SEO dinamicamente
+function atualizarMetadadosSEO(produto) {
+   if (!produto) return // Proteção contra erro se produto for undefined
+
+   // Atualizar título da página
+   document.title = `${produto.nome} - PetAmigo`
+
+   // Atualizar meta description
+   const metaDescription = document.querySelector('meta[name="description"]')
+   if (metaDescription) {
+      metaDescription.setAttribute(
+         'content',
+         produto.descricao.substring(0, 160)
+      )
+   }
+
+   // Atualizar schema de dados estruturados para Rich Snippets
+   try {
+      const schemaScript = document.getElementById('produto-schema')
+      if (schemaScript) {
+         const schema = {
+            '@context': 'https://schema.org/',
+            '@type': 'Product',
+            name: produto.nome,
+            image: produto.imagem,
+            description: produto.descricao,
+            brand: {
+               '@type': 'Brand',
+               name: 'PetAmigo',
+            },
+            offers: {
+               '@type': 'Offer',
+               url: window.location.href,
+               priceCurrency: 'BRL',
+               price: produto.preco.toFixed(2),
+               availability:
+                  produto.estoque > 0
+                     ? 'https://schema.org/InStock'
+                     : 'https://schema.org/OutOfStock',
+            },
+            aggregateRating: {
+               '@type': 'AggregateRating',
+               ratingValue: produto.avaliacao.toString(),
+               reviewCount: Math.floor(produto.avaliacao * 10).toString(),
+            },
+         }
+
+         schemaScript.textContent = JSON.stringify(schema, null, 2)
+      }
+   } catch (error) {
+      console.error('Erro ao atualizar schema:', error)
    }
 }
 
