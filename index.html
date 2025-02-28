@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>PetAmigo - Tudo para o seu melhor amigo</title>
+      <link
+         rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+      />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      />
+      <link rel="stylesheet" href="assets/css/style.css" />
+      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+   </head>
+   <body>
+      <header>
+         <div class="container">
+            <div class="logo">
+               <img
+                  src="https://images.unsplash.com/photo-1602612142771-04b0adfca46d?q=80&w=100&h=100&crop=faces&fit=crop"
+                  alt="PetAmigo Logo"
+               />
+               <h1>PetAmigo</h1>
+            </div>
+            <nav>
+               <ul>
+                  <li><a href="index.html">Início</a></li>
+                  <li><a href="#produtos">Produtos</a></li>
+                  <li><a href="#sobre">Sobre Nós</a></li>
+                  <li>
+                     <a href="pages/carrinho.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+
+      <main>
+         <section class="hero">
+            <div class="container">
+               <h2>Tudo para seu melhor amigo</h2>
+               <p>
+                  Os melhores produtos para o bem-estar, saúde e diversão do seu
+                  pet.
+               </p>
+               <a href="#produtos" class="btn">Ver Produtos</a>
+            </div>
+         </section>
+
+         <section id="produtos" class="produtos-destaque">
+            <div class="container">
+               <div class="section-title">
+                  <h2>Nossos Produtos</h2>
+               </div>
+
+               <div class="categorias">
+                  <button class="categoria-btn active" data-categoria="todos">
+                     Todos
+                  </button>
+                  <button class="categoria-btn" data-categoria="alimentacao">
+                     Alimentação
+                  </button>
+                  <button class="categoria-btn" data-categoria="higiene">
+                     Higiene
+                  </button>
+                  <button class="categoria-btn" data-categoria="acessorios">
+                     Acessórios
+                  </button>
+                  <button class="categoria-btn" data-categoria="brinquedos">
+                     Brinquedos
+                  </button>
+                  <button class="categoria-btn" data-categoria="saude">
+                     Saúde
+                  </button>
+               </div>
+
+               <div id="lista-produtos" class="grid-produtos">
+                  <div class="loading">
+                     <i class="fas fa-spinner fa-spin"></i> Carregando
+                     produtos...
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section id="sobre" class="sobre-nos">
+            <div class="container">
+               <div class="section-title">
+                  <h2>Sobre a PetAmigo</h2>
+               </div>
+               <div class="sobre-content">
+                  <p>
+                     Somos uma loja especializada em produtos para pets, com
+                     foco no bem-estar e qualidade de vida dos seus melhores
+                     amigos. Nossa missão é oferecer produtos premium para cães,
+                     gatos e outros animais de estimação, com preços justos e
+                     atendimento de excelência.
+                  </p>
+                  <p>
+                     Fundada em 2015, a PetAmigo já conquistou milhares de
+                     clientes em todo o Brasil, graças ao compromisso com a
+                     qualidade e o amor pelos animais.
+                  </p>
+               </div>
+            </div>
+         </section>
+      </main>
+
+      <footer>
+         <div class="container">
+            <div class="footer-content">
+               <div class="footer-column">
+                  <h3>PetAmigo</h3>
+                  <p>
+                     Tudo para o bem-estar do seu melhor amigo, com qualidade e
+                     amor.
+                  </p>
+                  <div class="social-links">
+                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-twitter"></i></a>
+                     <a href="#"><i class="fab fa-youtube"></i></a>
+                  </div>
+               </div>
+
+               <div class="footer-column">
+                  <h3>Links Úteis</h3>
+                  <ul>
+                     <li><a href="#">Início</a></li>
+                     <li><a href="#produtos">Produtos</a></li>
+                     <li><a href="#sobre">Sobre Nós</a></li>
+                     <li><a href="#">Contato</a></li>
+                     <li><a href="#">Política de Privacidade</a></li>
+                  </ul>
+               </div>
+
+               <div class="footer-column">
+                  <h3>Contato</h3>
+                  <ul>
+                     <li>
+                        <i class="fas fa-map-marker-alt"></i> Av. Brasil, 1500 -
+                        São Paulo, SP
+                     </li>
+                     <li><i class="fas fa-phone"></i> (11) 3456-7890</li>
+                     <li>
+                        <i class="fas fa-envelope"></i> contato@petamigo.com.br
+                     </li>
+                  </ul>
+               </div>
+
+               <div class="footer-column">
+                  <h3>Newsletter</h3>
+                  <p>Assine nossa newsletter e receba ofertas exclusivas.</p>
+                  <form>
+                     <input type="email" placeholder="Seu e-mail" required />
+                     <button type="submit" class="btn">Assinar</button>
+                  </form>
+               </div>
+            </div>
+
+            <div class="footer-bottom">
+               <p>&copy; 2023 PetAmigo. Todos os direitos reservados.</p>
+            </div>
+         </div>
+      </footer>
+
+      <script src="assets/js/api.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>

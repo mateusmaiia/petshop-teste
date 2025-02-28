@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Detalhes do Produto - PetAmigo</title>
+      <link
+         rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+      />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      />
+      <link rel="stylesheet" href="../assets/css/style.css" />
+      <link rel="stylesheet" href="../assets/css/produto.css" />
+      <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon" />
+   </head>
+   <body>
+      <header>
+         <div class="container">
+            <div class="logo">
+               <img src="../assets/img/logo-petshop.png" alt="PetAmigo Logo" />
+               <h1>PetAmigo</h1>
+            </div>
+            <nav>
+               <ul>
+                  <li><a href="../index.html">Início</a></li>
+                  <li><a href="../index.html#produtos">Produtos</a></li>
+                  <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                  <li>
+                     <a href="carrinho.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+
+      <main>
+         <div class="container">
+            <div class="breadcrumb">
+               <a href="../index.html">Início</a>
+               <i class="fas fa-chevron-right"></i>
+               <a href="../index.html#produtos">Produtos</a>
+               <i class="fas fa-chevron-right"></i>
+               <span id="produto-nome-breadcrumb">Carregando...</span>
+            </div>
+
+            <div id="produto-detalhe" class="produto-detalhe">
+               <div class="loading">
+                  <i class="fas fa-spinner fa-spin"></i> Carregando detalhes do
+                  produto...
+               </div>
+            </div>
+
+            <div class="section-title produto-relacionados-titulo">
+               <h2>Produtos Relacionados</h2>
+            </div>
+
+            <div id="produtos-relacionados" class="grid-produtos">
+               <div class="loading">
+                  <i class="fas fa-spinner fa-spin"></i> Carregando produtos...
+               </div>
+            </div>
+         </div>
+      </main>
+
+      <footer>
+         <div class="container">
+            <div class="footer-content">
+               <div class="footer-column">
+                  <h3>PetAmigo</h3>
+                  <p>
+                     Tudo para o bem-estar do seu melhor amigo, com qualidade e
+                     amor.
+                  </p>
+                  <div class="social-links">
+                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-twitter"></i></a>
+                     <a href="#"><i class="fab fa-youtube"></i></a>
+                  </div>
+               </div>
+
+               <div class="footer-column">
+                  <h3>Links Úteis</h3>
+                  <ul>
+                     <li><a href="../index.html">Início</a></li>
+                     <li><a href="../index.html#produtos">Produtos</a></li>
+                     <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                     <li><a href="#">Contato</a></li>
+                     <li><a href="#">Política de Privacidade</a></li>
+                  </ul>
+               </div>
+
+               <div class="footer-column">
+                  <h3>Contato</h3>
+                  <ul>
+                     <li>
+                        <i class="fas fa-map-marker-alt"></i> Av. Brasil, 1500 -
+                        São Paulo, SP
+                     </li>
+                     <li><i class="fas fa-phone"></i> (11) 3456-7890</li>
+                     <li>
+                        <i class="fas fa-envelope"></i> contato@petamigo.com.br
+                     </li>
+                  </ul>
+               </div>
+
+               <div class="footer-column">
+                  <h3>Newsletter</h3>
+                  <p>Assine nossa newsletter e receba ofertas exclusivas.</p>
+                  <form>
+                     <input type="email" placeholder="Seu e-mail" required />
+                     <button type="submit" class="btn">Assinar</button>
+                  </form>
+               </div>
+            </div>
+
+            <div class="footer-bottom">
+               <p>&copy; 2023 PetAmigo. Todos os direitos reservados.</p>
+            </div>
+         </div>
+      </footer>
+
+      <script src="../assets/js/api.js"></script>
+      <script src="../assets/js/main.js"></script>
+      <script src="../assets/js/produto.js"></script>
+   </body>
+</html>
